@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color='warning'>
+    <ion-buttons slot='start'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Restaurante Balaio de Lenha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div>
+  <img src="../../assets/balaio.png">
+</div>
+
+<!--
+<ion-row>
+  <ion-col size="8">
+
+  </ion-col>
+  <ion-col size="8">
+
+  </ion-col>
+  <ion-col size="8">
+
+  </ion-col>
+</ion-row>
+-->
+
+  <ion-card color="success">
+    <ion-card-title class="centralizar">VALOR DA COMANDA</ion-card-title>
+    <ion-item>
+      <ion-label class="centralizar">Consumo Total:</ion-label>
+      <ion-input class="centralizar" type="number"clearInput [(ngModel)]="consumo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="centralizar">Couvert Artístico:</ion-label>
+      <ion-label class="centralizar">5</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="centralizar">Dividir Conta Por:</ion-label>
+      <ion-input class="centralizar" type="number"clearInput [(ngModel)]="dividir"></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-card color="danger">
+    <ion-card-title class="centralizar">VALOR A PAGAR</ion-card-title>
+    <ion-item>
+      <ion-label class="centralizar">Taxa Serviço (10%):</ion-label>
+      <ion-label class="centralizar">{{taxa}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="centralizar">Total a Pagar:</ion-label>
+      <ion-label class="centralizar">{{total}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="centralizar">Valor por Pessoa:</ion-label>
+      <ion-label class="centralizar">{{pessoa}}</ion-label>
+    </ion-item>
+  </ion-card>
+<ion-button color="medium" expand="block" (click)="calcular()">Calcular</ion-button>
+
+</ion-content>

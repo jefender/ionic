@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot='start'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Calcular</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!--<ion-input clearImput placeholder="Entre com o valor" type="number"></ion-input>
+-->
+
+<ion-item>
+  <ion-label position="floating"> Digite o 1º Valor: </ion-label>
+  <ion-input clearInput value="clear me" type="number" [(ngModel)] = "valor01"></ion-input>
+</ion-item>
+
+<ion-item style="margin-bottom: 30px;">
+  <ion-label position="floating"> Digite o 2º Valor: </ion-label>
+  <ion-input clearInput type="number" [(ngModel)] = "valor02"></ion-input>
+</ion-item>
+
+<ion-item style="test-align: center;" line="none">
+  <ion-label>{{resultado}}</ion-label>
+</ion-item>
+
+
+<ion-button size="large" shape="round" expand="block" color="warning" (click)="somar()">SOMA</ion-button>
+<ion-button size="large" shape="round" expand="block" color="danger" (click)="subtracao()">SUBTRAÇÃO</ion-button>
+<ion-button size="large" shape="round" expand="block" color="success" (click)="multiplicacao()">MULTIPLICAÇÃO</ion-button>
+<ion-button size="large" shape="round" expand="block" color="danger" (click)="divisao()">DIVISÃO</ion-button>
+
+
+
+
+</ion-content>

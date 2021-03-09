@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color='danger'>
+    <ion-buttons slot='start'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Rodízio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <div id="conteudo">
+<div>
+
+  <ion-label>Digite o Número da Placa de seu Carro</ion-label>
+
+  </div>
+  <br>
+  <ion-input type="text" [(ngModel)] = "placa">
+<br>
+  </ion-input>
+  <ion-button expand="block" size="large" color="danger" (click)="verificar()">Verificar
+
+  </ion-button>
+  <br>
+  <div>
+  <ion-label>{{dia}}</ion-label>
+  </div>
+</div>
+</ion-content>

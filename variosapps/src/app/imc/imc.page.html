@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color='success'>
+    <ion-buttons slot='start'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>IMC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>VEJA A INTERPRETAÇÃO DO IMC</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>IMC</ion-col>
+        <ion-col>Classificação</ion-col>
+        <ion-col>Obesidade</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Menor que 18.5</ion-col>
+        <ion-col>Magresa</ion-col>
+        <ion-col>0</ion-col>       
+      </ion-row>
+      <ion-row>
+        <ion-col>Menor que 24.9</ion-col>
+        <ion-col>Normal</ion-col>
+        <ion-col>0</ion-col>        
+      </ion-row>
+      <ion-row>
+        <ion-col>Menor que 29.9</ion-col>
+        <ion-col>SobrePeso</ion-col>
+        <ion-col>1</ion-col>        
+      </ion-row>
+      <ion-row>
+        <ion-col>Menor 39.9</ion-col>
+        <ion-col>Obesidade</ion-col>
+        <ion-col>2</ion-col>        
+      </ion-row>
+      <ion-row>
+        <ion-col>Maior 40</ion-col>
+        <ion-col>Obesidade</ion-col>
+        <ion-col>3</ion-col>
+        
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card color="success">
+    <ion-card-title>Informações</ion-card-title>
+      <ion-item lines="none">
+        <ion-label position="floating">Digite sua altura</ion-label>
+        <ion-input type="number"[(ngModel)]="altura"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Digite o peso</ion-label>
+        <ion-input type="number"[(ngModel)]="peso"></ion-input>
+      </ion-item>
+  </ion-card>
+
+  <ion-card color="medium">
+    <ion-card-title>Resultado</ion-card-title>
+    <h1>{{imc}}</h1>
+    <h5>{{categoria}}</h5>
+    <h5>{{obesidade}}</h5>
+  </ion-card>
+
+<div>
+  <ion-button color="danger" (click)="calcular()">Calcular</ion-button>
+  <ion-button color="warning" (click)="limpar()">Limpar</ion-button>
+</div>
+
+</ion-content>
