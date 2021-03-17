@@ -1,5 +1,14 @@
 <ion-content>
-  <div id="centralizar">
+  <div id="foto">
+    <img src="../../assets/img/usuario.png" alt="Foto do Usuário">
+    <ion-row>
+      <ion-col><ion-icon size="large" name="camera-outline"></ion-icon></ion-col>
+      <ion-col><ion-icon size="large" name="image-outline"></ion-icon></ion-col>
+    </ion-row>
+  </div>
+
+  <div id="Pessoal">
+    Dados Pessoais
     <ion-item lines='none'>
       <ion-label position="floating">Nome</ion-label>
       <ion-input></ion-input>
@@ -9,31 +18,22 @@
       <ion-input></ion-input>
     </ion-item>
     <ion-item lines='none'>
-      <ion-label position="floating">E-mail</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Telefone</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
       <ion-label position="floating">Gênero</ion-label>
-      <ion-input></ion-input>
+      <ion-select value="m">
+        <ion-select-option value="f">Feminino</ion-select-option>
+        <ion-select-option value="m">Masculino</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Data de nascimento</ion-label>
-      <ion-input></ion-input>
+      <ion-datetime value="2000-01-01" min="1960-01" max="2030" displayFormat="DD/MM/YYYY"></ion-datetime>
     </ion-item>
+  </div>
+
+  <div>
+    Endereço
     <ion-item lines='none'>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Repetir a Senha</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">CEP</ion-label>
+      <ion-label position="floating">Cep</ion-label>
       <ion-input></ion-input>
     </ion-item>
     <ion-item lines='none'>
@@ -45,18 +45,57 @@
       <ion-input></ion-input>
     </ion-item>
     <ion-item lines='none'>
+      <ion-label position="floating">Complemento</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item lines='none'>
       <ion-label position="floating">Bairro</ion-label>
       <ion-input></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button shape="round" color="success" fill="outline" (click)="carregarTela('login')">Login</ion-button>
+        <ion-item lines='none'>
+          <ion-label position="floating">Cidade</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
       </ion-col>
-      <ion-col>      
-        <ion-button shape="round" color="danger" fill="outline" (click)="carregarTela('folder/Inbox')">Cancelar</ion-button>
+      <ion-col>
+        <ion-item lines='none'>
+          <ion-label position="floating">Estado</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
       </ion-col>
-    </ion-row>  
-
+    </ion-row>
   </div>
+
+
+  <div>
+    Segurança
+    <ion-item lines='none'>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Repetir o E-mail</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Repetir a Senha</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </div>
+
+  <ion-row>
+    <ion-col>
+      <ion-button shape="round" color="success" fill="outline" (click)="carregarTela('cadastro')">Cadastrar</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button shape="round" color="danger" fill="outline" (click)="carregarTela('folder/Inbox')">Cancelar</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
