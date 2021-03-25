@@ -1,13 +1,16 @@
 div{
   margin: 10px 10px 10px 10px;
-}
-
-#foto{
   text-align: center;
 }
 
+#imgUser{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
 ion-item{
-  border: 1px solid blue;
+  border: 1px solid #92949C;
   margin-top: 10px;
   border-radius: 10px;
 }
@@ -18,4 +21,22 @@ ion-icon{
 
 ion-row{
   text-align: center;
+}
+
+ion-col{
+  padding: 0px;
+}
+
+h3{
+  text-align: center;
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+span{
+  font-size: 10pt;
+  text-align: left;
+  width: 180px;
+  color: red;
 }

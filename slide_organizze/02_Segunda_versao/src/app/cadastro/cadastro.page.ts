@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,13 +8,44 @@ import { NavController } from '@ionic/angular';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  public erroEmail; erroEmailConfirm; erroSenha; erroSenhaConfirm; erroNome; erroSobrenome; erroTelefone: boolean = false;
+
+  constructor(public navCtrl: NavController, public controleAlerta: AlertController) { }
 
   ngOnInit() {
   }
 
-  carregarTela(tela) {
-    this.navCtrl.navigateForward(tela);
+  async alertaSimples(){
+    const alert = await this.controleAlerta.create({
+      header: 'APP',
+      subHeader: 'Organizze',
+      message: 'Precisamos programar esse botão',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
+  async alertaConfirma(){
+    const alert = await this.controleAlerta.create({
+      header: 'Organizze',
+      message: 'Deseja realmente sair dessa tela?',
+      buttons: [
+        {
+          text: 'Sim',
+          cssClass: 'secundary',
+          handler: () => {
+            this.navCtrl.navigateForward('folder/Inbox')
+          }
+        },
+        {
+          text: 'Não',
+          role: 'não',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }

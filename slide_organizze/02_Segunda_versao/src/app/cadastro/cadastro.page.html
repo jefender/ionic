@@ -1,27 +1,59 @@
 <ion-content>
-  <div id="foto">
-    <img src="../../assets/img/usuario.png" alt="Foto do Usuário">
+  <div>
+    <ion-icon id=imgUser name="person-circle-outline" color="medium"></ion-icon>
     <ion-row>
       <ion-col><ion-icon size="large" name="camera-outline"></ion-icon></ion-col>
       <ion-col><ion-icon size="large" name="image-outline"></ion-icon></ion-col>
     </ion-row>
   </div>
 
-  <div id="Pessoal">
-    Dados Pessoais
+  <div>
+    <h3>Dados de Acesso</h3>
+    <ion-item lines='none'>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input clearInput maxlength="20" type="email"></ion-input>
+      <span *ngIf="erroEmail">*E-mail Inválido</span>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Repetir o E-mail</ion-label>
+      <ion-input clearInput maxlength="20" type="email"></ion-input>
+      <span *ngIf="erroEmailConfirm">*E-mail Inválido</span>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input clearInput maxlength="15" type="password"></ion-input>
+      <span *ngIf="erroSenha">*Senha Inválida</span>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Repetir a Senha</ion-label>
+      <ion-input clearInput maxlength="15" type="password"></ion-input>
+      <span *ngIf="erroSenhaConfirm">*Senha Inválida</span>
+    </ion-item>
+  </div>
+
+  <div>
+    <h3>Dados Pessoais</h3>
     <ion-item lines='none'>
       <ion-label position="floating">Nome</ion-label>
-      <ion-input></ion-input>
+      <ion-input clearInput maxlength="15" type="text"></ion-input>
+      <span *ngIf="erroNome">*Nome Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Sobrenome</ion-label>
-      <ion-input></ion-input>
+      <ion-input clearInput maxlength="40" type="text"></ion-input>
+      <span *ngIf="erroSobrenome">*Sobrenome Inválido</span>
+    </ion-item>
+    <ion-item lines='none'>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input clearInput maxlength="40" type="text"></ion-input>
+      <span *ngIf="erroTelefone">*Telefone Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Gênero</ion-label>
-      <ion-select value="m">
+      <ion-select value="o">
         <ion-select-option value="f">Feminino</ion-select-option>
         <ion-select-option value="m">Masculino</ion-select-option>
+        <ion-select-option value="o">Outros</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item lines='none'>
@@ -31,71 +63,57 @@
   </div>
 
   <div>
-    Endereço
-    <ion-item lines='none'>
-      <ion-label position="floating">Cep</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+    <h3>Endereço</h3>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines='none'>
+          <ion-label position="floating">Cep</ion-label>
+          <ion-input clearInput maxlength="8" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="5">
+        <ion-item lines='none'>
+          <ion-label position="floating">Número</ion-label>
+          <ion-input clearInput maxlength="5" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
     <ion-item lines='none'>
       <ion-label position="floating">Endereço</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Número</ion-label>
-      <ion-input></ion-input>
+      <ion-input clearInput maxlength="50" type="text"></ion-input>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Complemento</ion-label>
-      <ion-input></ion-input>
+      <ion-input clearInput maxlength="20" type="text"></ion-input>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Bairro</ion-label>
-      <ion-input></ion-input>
+      <ion-input clearInput maxlength="20" type="text"></ion-input>
     </ion-item>
-
     <ion-row>
-      <ion-col>
+      <ion-col size="8">
         <ion-item lines='none'>
           <ion-label position="floating">Cidade</ion-label>
-          <ion-input></ion-input>
+          <ion-input clearInput maxlength="20" type="text"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="3">
         <ion-item lines='none'>
           <ion-label position="floating">Estado</ion-label>
-          <ion-input></ion-input>
+          <ion-input clearInput maxlength="2" type="text"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
   </div>
 
-
-  <div>
-    Segurança
-    <ion-item lines='none'>
-      <ion-label position="floating">E-mail</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Repetir o E-mail</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item lines='none'>
-      <ion-label position="floating">Repetir a Senha</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-  </div>
-
   <ion-row>
     <ion-col>
-      <ion-button shape="round" color="success" fill="outline" (click)="carregarTela('cadastro')">Cadastrar</ion-button>
+      <ion-button shape="round" color="success" fill="outline" (click)="alertaSimples()">Cadastrar</ion-button>
     </ion-col>
     <ion-col>
-      <ion-button shape="round" color="danger" fill="outline" (click)="carregarTela('folder/Inbox')">Cancelar</ion-button>
+      <ion-button shape="round" color="danger" fill="outline" (click)="alertaConfirma()">Cancelar</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
