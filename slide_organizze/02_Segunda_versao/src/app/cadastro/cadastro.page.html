@@ -68,41 +68,41 @@
       <ion-col size="6">
         <ion-item lines='none'>
           <ion-label position="floating">Cep</ion-label>
-          <ion-input clearInput maxlength="8" type="text"></ion-input>
+          <ion-input clearInput maxlength="8" type="text" [(ngModel)]="cep" (ionBlur)="exibirCep(cep)"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="1"></ion-col>
       <ion-col size="5">
         <ion-item lines='none'>
           <ion-label position="floating">Número</ion-label>
-          <ion-input clearInput maxlength="5" type="text"></ion-input>
+          <ion-input clearInput maxlength="5" type="number"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-item lines='none'>
       <ion-label position="floating">Endereço</ion-label>
-      <ion-input clearInput maxlength="50" type="text"></ion-input>
+      <ion-input clearInput maxlength="50" type="text" [(ngModel)]="endereco"></ion-input>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Complemento</ion-label>
-      <ion-input clearInput maxlength="20" type="text"></ion-input>
+      <ion-input clearInput maxlength="20" type="text" [(ngModel)]="complemento"></ion-input>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Bairro</ion-label>
-      <ion-input clearInput maxlength="20" type="text"></ion-input>
+      <ion-input clearInput maxlength="20" type="text" [(ngModel)]="bairro"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col size="8">
         <ion-item lines='none'>
           <ion-label position="floating">Cidade</ion-label>
-          <ion-input clearInput maxlength="20" type="text"></ion-input>
+          <ion-input clearInput maxlength="20" type="text" [(ngModel)]="cidade"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="1"></ion-col>
       <ion-col size="3">
         <ion-item lines='none'>
           <ion-label position="floating">Estado</ion-label>
-          <ion-input clearInput maxlength="2" type="text"></ion-input>
+          <ion-input clearInput maxlength="2" type="text" [(ngModel)]="estado"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -110,10 +110,10 @@
 
   <ion-row>
     <ion-col>
-      <ion-button shape="round" color="success" fill="outline" (click)="alertaSimples()">Cadastrar</ion-button>
+      <ion-button shape="round" color="success" fill="outline" (click)="geralCtrl.alertaSimples('Por favor preencha todos os campos!!')">Cadastrar</ion-button>
     </ion-col>
     <ion-col>
-      <ion-button shape="round" color="danger" fill="outline" (click)="alertaConfirma()">Cancelar</ion-button>
+      <ion-button shape="round" color="danger" fill="outline" (click)="geralCtrl.alertaConfirma()">Cancelar</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { GeralService } from '../service/geral.service';
 
 @Component({
   selector: 'app-login',
@@ -8,37 +8,8 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public controleAlerta: AlertController) { }
+  constructor(public geralCtrl: GeralService) { }
 
   ngOnInit() {
   }
-
-  carregarTela(tela) {
-    this.navCtrl.navigateForward(tela);
-  }
-
-  async alertaConfirma(){
-    const alert = await this.controleAlerta.create({
-      header: 'Organizze',
-      message: 'Deseja realmente sair dessa tela?',
-      buttons: [
-        {
-          text: 'Sim',
-          cssClass: 'secundary',
-          handler: () => {
-            this.navCtrl.navigateForward('folder/Inbox')
-          }
-        },
-        {
-          text: 'Não',
-          role: 'não',
-          handler: () => {
-
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
 }
