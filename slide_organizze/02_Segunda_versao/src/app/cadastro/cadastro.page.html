@@ -11,23 +11,23 @@
     <h3>Dados de Acesso</h3>
     <ion-item lines='none'>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input clearInput maxlength="20" type="email"></ion-input>
-      <span *ngIf="erroEmail">*E-mail Inválido</span>
+      <ion-input clearInput maxlength="50" type="email" (ionBlur)="validacaoCtr.validarEmail(email)" [(ngModel)]="email"></ion-input>
+      <span *ngIf="validacaoCtr.erroEmail">*E-mail Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Repetir o E-mail</ion-label>
-      <ion-input clearInput maxlength="20" type="email"></ion-input>
-      <span *ngIf="erroEmailConfirm">*E-mail Inválido</span>
+      <ion-input clearInput maxlength="50" type="email" (ionBlur)="validacaoCtr.validarReemail(reEmail)" [(ngModel)]="reEmail"></ion-input>
+      <span *ngIf="validacaoCtr.erroEmailConfirm">*E-mail Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input clearInput maxlength="15" type="password"></ion-input>
-      <span *ngIf="erroSenha">*Senha Inválida</span>
+      <ion-input clearInput maxlength="15" type="password" (ionBlur)="validacaoCtr.validarPassword(password)" [(ngModel)]="password"></ion-input>
+      <span *ngIf="validacaoCtr.erroSenha">*Senha Inválida</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Repetir a Senha</ion-label>
-      <ion-input clearInput maxlength="15" type="password"></ion-input>
-      <span *ngIf="erroSenhaConfirm">*Senha Inválida</span>
+      <ion-input clearInput maxlength="15" type="password" (ionBlur)="validacaoCtr.validarRepassword(repassword)" [(ngModel)]="repassword"></ion-input>
+      <span *ngIf="validacaoCtr.erroSenhaConfirm">*Senha Inválida</span>
     </ion-item>
   </div>
 
@@ -35,18 +35,18 @@
     <h3>Dados Pessoais</h3>
     <ion-item lines='none'>
       <ion-label position="floating">Nome</ion-label>
-      <ion-input clearInput maxlength="15" type="text"></ion-input>
-      <span *ngIf="erroNome">*Nome Inválido</span>
+      <ion-input clearInput maxlength="15" type="text" (ionBlur)="validacaoCtr.validarName(name)" [(ngModel)]="name"></ion-input>
+      <span *ngIf="validacaoCtr.erroNome">*Nome Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Sobrenome</ion-label>
-      <ion-input clearInput maxlength="40" type="text"></ion-input>
-      <span *ngIf="erroSobrenome">*Sobrenome Inválido</span>
+      <ion-input clearInput maxlength="40" type="text" (ionBlur)="validacaoCtr.validarLastname(lastname)" [(ngModel)]="lastname"></ion-input>
+      <span *ngIf="validacaoCtr.erroSobrenome">*Sobrenome Inválido</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Telefone</ion-label>
-      <ion-input clearInput maxlength="40" type="text"></ion-input>
-      <span *ngIf="erroTelefone">*Telefone Inválido</span>
+      <ion-input clearInput maxlength="40" type="text" (ionBlur)="validacaoCtr.validarTelefone(telefone)" [(ngModel)]="telefone"></ion-input>
+      <span *ngIf="validacaoCtr.erroTelefone">*Formato: "XX-XXXX-XXXX"</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Gênero</ion-label>

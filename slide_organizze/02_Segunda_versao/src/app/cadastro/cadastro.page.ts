@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeralService } from '../service/geral.service';
+import { ValidacaoService } from '../service/validacao.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,11 +9,11 @@ import { GeralService } from '../service/geral.service';
 })
 export class CadastroPage implements OnInit {
 
-  public erroEmail; erroEmailConfirm; erroSenha; erroSenhaConfirm; erroNome; erroSobrenome; erroTelefone: boolean = false;
-
   public cep; endereco; complemento; bairro; cidade; estado: string;
 
-  constructor(public geralCtrl: GeralService) { }
+  public email: string; password: string; repassword: string; reEmail: string; name: string; lastname: string; telefone: string;
+
+  constructor(public geralCtrl: GeralService, public validacaoCtr: ValidacaoService) { }
 
   ngOnInit() {
   }
