@@ -22,12 +22,12 @@
     <ion-item lines='none'>
       <ion-label position="floating">Senha</ion-label>
       <ion-input clearInput maxlength="15" type="password" (ionBlur)="validacaoCtr.validarPassword(password)" [(ngModel)]="password"></ion-input>
-      <span *ngIf="validacaoCtr.erroSenha">*Senha Inválida</span>
+      <span *ngIf="validacaoCtr.erroSenha">{{validacaoCtr.msgErroPassword}}</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Repetir a Senha</ion-label>
       <ion-input clearInput maxlength="15" type="password" (ionBlur)="validacaoCtr.validarRepassword(repassword)" [(ngModel)]="repassword"></ion-input>
-      <span *ngIf="validacaoCtr.erroSenhaConfirm">*Senha Inválida</span>
+      <span *ngIf="validacaoCtr.erroSenhaConfirm">*As senhas não conferem</span>
     </ion-item>
   </div>
 
@@ -45,12 +45,12 @@
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Telefone</ion-label>
-      <ion-input clearInput maxlength="40" type="text" (ionBlur)="validacaoCtr.validarTelefone(telefone)" [(ngModel)]="telefone"></ion-input>
-      <span *ngIf="validacaoCtr.erroTelefone">*Formato: "XX-XXXX-XXXX"</span>
+      <ion-input clearInput maxlength="14" type="text" (ionChange)="maskTelefone(telefone)" [(ngModel)]="telefone"></ion-input>
+      <span *ngIf="validacaoCtr.erroTelefone">*Número Inválido"</span>
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Gênero</ion-label>
-      <ion-select value="o">
+      <ion-select value="o" [(ngModel)]="genero">
         <ion-select-option value="f">Feminino</ion-select-option>
         <ion-select-option value="m">Masculino</ion-select-option>
         <ion-select-option value="o">Outros</ion-select-option>
@@ -58,7 +58,7 @@
     </ion-item>
     <ion-item lines='none'>
       <ion-label position="floating">Data de nascimento</ion-label>
-      <ion-datetime value="2000-01-01" min="1960-01" max="2030" displayFormat="DD/MM/YYYY"></ion-datetime>
+      <ion-datetime value="2000-01-01" min="1960-01" max="2030" displayFormat="DD/MM/YYYY" (ionBlur)="formataData()" [(ngModel)]="dataNascimento"></ion-datetime>
     </ion-item>
   </div>
 
@@ -75,7 +75,7 @@
       <ion-col size="5">
         <ion-item lines='none'>
           <ion-label position="floating">Número</ion-label>
-          <ion-input clearInput maxlength="5" type="number"></ion-input>
+          <ion-input clearInput type="number"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

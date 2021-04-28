@@ -1,3 +1,4 @@
+import { NumberFormatStyle } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class ValidacaoService {
 
   public erroEmail; erroEmailConfirm; erroSenha; erroSenhaConfirm; erroNome; erroSobrenome; erroTelefone; confirma; confirmaEmail;
+
+  public msgErroPassword: string;
 
   constructor() { }
 
@@ -29,16 +32,44 @@ export class ValidacaoService {
   }
 
   validarPassword(valor: string) {
-    if (valor == undefined || valor == '' || valor.length <= 8 || valor.match(/[0-9]/) == null || valor.match(/[@#$%&*+=ç]/) == null){
+
+    if (valor == undefined || valor == ''){
       this.erroSenha = true;
+      this.msgErroPassword = "*Senha Inválida";
+      return false;
     }else{
       this.erroSenha = false;
     }
+
+    if (valor.length <= 8){
+      this.erroSenha = true;
+      this.msgErroPassword = "*A senha deve ter mais de 8 caracteres";
+      return false;
+    }else{
+      this.erroSenha = false;
+    }
+
+    if (valor.match(/[0-9]/) == null){
+      this.erroSenha = true;
+      this.msgErroPassword = "*A senha deve ter pelo menos um número";
+      return false;
+    }else{
+      this.erroSenha = false;
+    }
+
+    if (valor.match(/[@#$%&*+=ç]/) == null){
+      this.erroSenha = true;
+      this.msgErroPassword = "*A senha deve ter pelo menos um caractere especial (@#$%&*+=ç)";
+      return false;
+    }else{
+      this.erroSenha = false;
+    }
+
     this.confirma = valor;
   }
 
   validarRepassword(valor: string){
-    if (valor == undefined || valor == '' || valor.length <= 8 || valor.match(/[0-9]/) == null || valor.match(/[@#$%&*+=ç]/) == null || valor != this.confirma){
+    if (valor != this.confirma){
       this.erroSenhaConfirm = true;
     }else{
       this.erroSenhaConfirm = false;
@@ -62,24 +93,10 @@ export class ValidacaoService {
   }
 
   validarTelefone(valor: string){
-    if (valor == undefined || valor == '' || valor.length <= 9){
+    if (valor == undefined || valor == '' || valor.length <= 13 ){
       this.erroTelefone = true;
     }else{
       this.erroTelefone = false;
-      //   Se o professor não explicar em aula, perguntar como fazer:
-      //   07)	Telefone
-      // - Informar para o usuário digitar no formato XX-XXXX-XXXX
-      // - Validar os DDDs
-
-
-
-
-
-
-
-
-
-      
     }
   }
 }
