@@ -3,10 +3,18 @@ div{
   text-align: center;
 }
 
-#imgUser{
-  width: 180px;
-  height: 180px;
+#divFoto{
   border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+img{
+  max-width: 300px;
+  left: -50px;
+  position: relative;
 }
 
 ion-item{

@@ -1,4 +1,3 @@
-import { NumberFormatStyle } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -64,7 +63,6 @@ export class ValidacaoService {
     }else{
       this.erroSenha = false;
     }
-
     this.confirma = valor;
   }
 
@@ -98,5 +96,6 @@ export class ValidacaoService {
     }else{
       this.erroTelefone = false;
     }
+
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BancoService } from '../service/banco.service';
+import { CameraService } from '../service/camera.service';
 import { GeralService } from '../service/geral.service';
 import { ValidacaoService } from '../service/validacao.service';
 
@@ -9,11 +11,13 @@ import { ValidacaoService } from '../service/validacao.service';
 })
 export class CadastroPage implements OnInit {
 
-  public cep; endereco; complemento; bairro; cidade; estado: string;
+  public cep; endereco; numero; complemento; bairro; cidade; estado: string;
 
   public email: string; password: string; repassword: string; reEmail: string; name: string; lastname: string; telefone: string; dataNascimento = "01/01/2000"; genero = "m";
 
-  constructor(public geralCtrl: GeralService, public validacaoCtr: ValidacaoService) { }
+  public usuario;
+
+  constructor(public bancoCtrl: BancoService, public geralCtrl: GeralService, public validacaoCtr: ValidacaoService, public cameractrl: CameraService) { }
 
   ngOnInit() {
   }
@@ -28,7 +32,7 @@ export class CadastroPage implements OnInit {
       this.estado = response.uf;
     })
     .catch((response) =>{
-      alert("Confirme o CEP informado!!")
+      this.geralCtrl.alertaSimples("Confirme o CEP informado!!");
     });
   }
 
@@ -37,6 +41,7 @@ export class CadastroPage implements OnInit {
     this.dataNascimento = data[0];
   }
 
+  // código para criar uma mascara no numero do telefone (XX)XXXXX-XXXX
   maskTelefone(valor: string) {
     valor = valor.replace(/\D/g, "");
     valor = valor.replace(/^(\d)/, "($1");
@@ -53,19 +58,67 @@ export class CadastroPage implements OnInit {
       valor = valor.replace(/(.{4})$/, "-$1");
     }
     this.telefone = valor;
-    this.validacaoCtr.validarTelefone(valor);
+    this.validarTelefone(valor);
   }
 
-  // validarCelular() {​​​​​​​​
-  //   if (this.validacao.validacaoCelular(this.celular) == false) {​​​​​​​​
-  //   this.erroCelular = true;
-  //       }​​​​​​​​
-  //   else {​​​​​​​​
-  //   this.celularValido = this.celular;
-  //   this.celularValido = this.celularValido.replace("(", "");
-  //   this.celularValido = this.celularValido.replace(")", "");
-  //   this.celularValido = this.celularValido.replace("-", "");
-  //   this.erroCelular = false;
-  //       }​​​​​​​​
-  //     }​​​​​​​​  código para limpar no numero antes de ir para o banco
+  // código para limpar no numero antes de ir para o banco
+  validarTelefone(valor) {​​​​​​​​
+    valor = this.telefone;
+    valor = valor.replace("(", "");
+    valor = valor.replace(")", "");
+    valor = valor.replace("-", "");
+  }​​​​
+
+  salvar(){
+    if(
+      this.validacaoCtr.erroEmail == true ||
+      this.validacaoCtr.erroEmailConfirm == true ||
+      this.validacaoCtr.erroSenha == true ||
+      this.validacaoCtr.erroSenhaConfirm == true ||
+      this.validacaoCtr.erroNome == true ||
+      this.validacaoCtr.erroSobrenome == true ||
+      this.validacaoCtr.erroTelefone == true ||
+      this.email == "" ||
+      this.password == "" ||
+      this.repassword == "" ||
+      this.name == "" ||
+      this.lastname == "" ||
+      this.telefone == "" ||
+      this.email == undefined ||
+      this.password == undefined ||
+      this.repassword == undefined ||
+      this.name == undefined ||
+      this.lastname == undefined ||
+      this.telefone == undefined
+      ){
+      this.geralCtrl.alertaSimples("Por favor! Preencher os campos Necessários");
+      return false;
+      }
+
+    this.usuario = { email: this.email, senha: this.password, nome:this.name, sobrenome:this.lastname, telefone:this.telefone, sexo:this.genero, nasc: this.dataNascimento, cep:this.cep, endereco:this.endereco, numero:this.numero, complemento:this.complemento, bairro:this.bairro, cidade:this.cidade, foto: this.cameractrl.photo };
+
+    this.inserirUser();
+  }
+
+  inserirUser(){
+    this.bancoCtrl.adicionarUsuario(this.usuario)
+    .then ((resposta: any)=>{
+      switch(resposta.Resp){
+        case '1':
+          this.geralCtrl.alertaSimples("Usuário já cadastrado")
+          break
+        case '0':
+          this.geralCtrl.alertaSimples("Usuário Cadastrado com sucesso");
+          this.geralCtrl.carregarTela('login')
+          break
+      }
+    })
+    .catch((resposta) =>{
+      this.geralCtrl.alertaSimples("Servidor não encontrado");
+    });
+  }
+
+  updateUser(){
+
+  }
 }
