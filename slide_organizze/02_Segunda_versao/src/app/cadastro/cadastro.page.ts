@@ -11,15 +11,20 @@ import { ValidacaoService } from '../service/validacao.service';
 })
 export class CadastroPage implements OnInit {
 
+  public logout:boolean=false;
+
   public cep; endereco; numero; complemento; bairro; cidade; estado: string;
 
   public email: string; password: string; repassword: string; reEmail: string; name: string; lastname: string; telefone: string; dataNascimento = "01/01/2000"; genero = "m";
 
   public usuario;
 
+  public userLocal;
+
   constructor(public bancoCtrl: BancoService, public geralCtrl: GeralService, public validacaoCtr: ValidacaoService, public cameractrl: CameraService) { }
 
   ngOnInit() {
+    this.carregarUser();
   }
 
   exibirCep(cep){
@@ -95,12 +100,16 @@ export class CadastroPage implements OnInit {
       return false;
       }
 
-    this.usuario = { email: this.email, senha: this.password, nome:this.name, sobrenome:this.lastname, telefone:this.telefone, sexo:this.genero, nasc: this.dataNascimento, cep:this.cep, endereco:this.endereco, numero:this.numero, complemento:this.complemento, bairro:this.bairro, cidade:this.cidade, foto: this.cameractrl.photo };
-
-    this.inserirUser();
+    if(this.logout ==true){
+      this.inserirUser();
+    }else{
+      this.atualizarUsuario();
+    }
   }
 
   inserirUser(){
+    this.usuario = { email: this.email, senha: this.password, nome:this.name, sobrenome:this.lastname, telefone:this.telefone, sexo:this.genero, nasc: this.dataNascimento, cep:this.cep, endereco:this.endereco, numero:this.numero, complemento:this.complemento, bairro:this.bairro, cidade:this.cidade, foto: this.cameractrl.photo };
+
     this.bancoCtrl.adicionarUsuario(this.usuario)
     .then ((resposta: any)=>{
       switch(resposta.Resp){
@@ -108,7 +117,7 @@ export class CadastroPage implements OnInit {
           this.geralCtrl.alertaSimples("Usuário já cadastrado")
           break
         case '0':
-          this.geralCtrl.alertaSimples("Usuário Cadastrado com sucesso");
+          this.geralCtrl.alertaSimples("Usuário Cadastrado com sucesso")
           this.geralCtrl.carregarTela('login')
           break
       }
@@ -118,7 +127,66 @@ export class CadastroPage implements OnInit {
     });
   }
 
-  updateUser(){
+  atualizarUsuario(){
+    this.usuario = {id_user:JSON.parse(localStorage.getItem('user')).id,email: this.email, senha: this.password, nome:this.name, sobrenome:this.lastname, telefone:this.telefone, sexo:this.genero, nasc: this.dataNascimento, cep:this.cep, endereco:this.endereco, numero:this.numero, complemento:this.complemento, bairro:this.bairro, cidade:this.cidade, foto: this.cameractrl.photo, nomefoto:JSON.parse(localStorage.getItem('user')).imagem};
 
+    console.log(this.usuario)
+    this.bancoCtrl.alterarUsuario(this.usuario)
+    .then((resposta: any) => {
+      switch (resposta.Resp) {
+        case '1':
+          this.userLocal= {
+            id: resposta.id,
+            email: resposta.email,
+            senha: resposta.senha,
+            nome:resposta.nome,
+            sobrenome:resposta.sobrenome,
+            telefone:resposta.telefone,
+            sexo:resposta.sexo,
+            nasc:resposta.nasc,
+            cep:resposta.cep,
+            endereco:resposta.endereco,
+            numero:resposta.numero,
+            complemento:resposta.complemento,
+            bairro:resposta.bairro,
+            cidade:resposta.cidade,
+            imagem:resposta.imagem,
+            receita:resposta.receita
+          };
+          localStorage.setItem('user',  JSON.stringify(this.userLocal) );
+          localStorage.setItem('total', resposta.receita);
+          this.geralCtrl.alertaSimples('Usuário Atualizado');
+          this.geralCtrl.carregarTela('principal')
+          break;
+      }
+    })
+    .catch((resposta) => {
+      this.geralCtrl.alertaSimples('Servidor não encontrado. Tente mais tarde!')
+    });
   }
+
+  carregarUser(){
+    if(localStorage.getItem('user')==null || localStorage.getItem('user')==''){
+      this.logout=true;
+    }else{
+      this.logout=false;
+      this.email = JSON.parse(localStorage.getItem('user')).email;
+      this.reEmail = JSON.parse(localStorage.getItem('user')).email;
+      this.password = JSON.parse(localStorage.getItem('user')).senha;
+      this.repassword = JSON.parse(localStorage.getItem('user')).senha;
+      this.name = JSON.parse(localStorage.getItem('user')).nome;
+      this.lastname = JSON.parse(localStorage.getItem('user')).sobrenome;
+      this.telefone = JSON.parse(localStorage.getItem('user')).telefone;
+      this.genero = JSON.parse(localStorage.getItem('user')).sexo;
+      this.dataNascimento = JSON.parse(localStorage.getItem('user')).nasc;
+      this.cep = JSON.parse(localStorage.getItem('user')).cep;
+      this.numero = JSON.parse(localStorage.getItem('user')).numero;
+      this.endereco = JSON.parse(localStorage.getItem('user')).endereco;
+      this.complemento = JSON.parse(localStorage.getItem('user')).complemento;
+      this.bairro = JSON.parse(localStorage.getItem('user')).bairro;
+      this.cidade = JSON.parse(localStorage.getItem('user')).cidade;
+      this.cameractrl.photoPadrao = 'http://localhost/organizze/imagens/'+JSON.parse(localStorage.getItem('user')).imagem+".jpg";
+    }
+  }
+
 }
