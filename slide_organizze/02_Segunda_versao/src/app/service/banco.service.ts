@@ -26,4 +26,10 @@ export class BancoService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.httpCtrl.post(url, usuario, {headers: headers}).toPromise();
   }
+
+  addVAlor(receita: any){
+    let url = this.caminho + 'addValor.php';
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.httpCtrl.post(url, receita, {headers: headers}).toPromise();
+  }
 }

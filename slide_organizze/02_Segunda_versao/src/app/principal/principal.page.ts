@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeralService } from '../service/geral.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalPage implements OnInit {
 
-  constructor() { }
+  valorTotal: any;
+  nome: any;
+
+  constructor(public geralCtrl: GeralService) {
+    this.valorTotal = JSON.parse(localStorage.getItem('total'));
+    this.nome = JSON.parse(localStorage.getItem('user')).nome;
+   }
 
   ngOnInit() {
   }
