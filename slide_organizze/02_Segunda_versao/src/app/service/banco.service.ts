@@ -32,4 +32,10 @@ export class BancoService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.httpCtrl.post(url, receita, {headers: headers}).toPromise();
   }
+
+  allValor(id: any){
+    let url = this.caminho + 'carregarValor.php';
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.httpCtrl.post(url, id, {headers: headers}).toPromise();
+  }
 }
